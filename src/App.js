@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Reveal from 'reveal.js';
 import MathJax from 'react-mathjax2';
 import '../node_modules/reveal.js/css/reveal.css';
-import '../node_modules/reveal.js/css/theme/moon.css';
+import '../node_modules/reveal.js/css/theme/black.css';
 import './App.css';
+import baiduSearchImage from './baidu_search.png';
 
 const bayesTherom = 'P(A|B) = (P(B|A) * P(A))/(P(B))';
 const featureVector = 'F = (f_1, f_2, ..., f_n)';
@@ -24,7 +25,7 @@ class App extends Component {
         <div className="slides">
           <section>
             <header>
-              <h2>Learning session: Naive Bayes</h2>
+              <h1>Learning session: Naive Bayes</h1>
             </header>
             <div>
               <MathJax.Context input="ascii">
@@ -36,9 +37,12 @@ class App extends Component {
           </section>
           <section>
             <header>
-              <h3>Baidu Search Query Classification</h3>
+              <h3>Search Query Classification</h3>
             </header>
             <section>
+              <div>
+                <img src={baiduSearchImage} alt="Baidu Search" />
+              </div>
               <div>尼桑leaf的最新价格 -> Car -> Electric car</div>
               <div>新版本炉石 红龙还好用不 -> Game -> Mobile game</div>
             </section>
