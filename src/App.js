@@ -62,6 +62,7 @@ class App extends Component {
             <section>
               <div>Supervised learning</div>
               <ul>
+                <li>Naive Bayes</li>
                 <li>Logistic Regression</li>
                 <li>Support Vector Machine</li>
                 <li>Neural Network that uses Backpropagation</li>
@@ -106,6 +107,7 @@ class App extends Component {
             </section>
             <section>
               <div class="fragment" data-fragment-index="1">
+                <div>Joint Probability</div>
                 <MathJax.Context input="ascii">
                   <div>
                     <MathJax.Node>{jointProb}</MathJax.Node>
@@ -114,6 +116,7 @@ class App extends Component {
               </div>
               <br />
               <div class="fragment" data-fragment-index="2">
+                <div>Probability chain rule</div>
                 <MathJax.Context input="ascii">
                   <div>
                     <MathJax.Node>{jointProb2}</MathJax.Node>
@@ -122,6 +125,7 @@ class App extends Component {
               </div>
               <br />
               <div class="fragment" data-fragment-index="3">
+                <div>Conditional independence assumption</div>
                 <MathJax.Context input="ascii">
                   <div>
                     <MathJax.Node>{jointProb3}</MathJax.Node>
@@ -152,7 +156,7 @@ class App extends Component {
           </section>
           <section>
             <header>
-              <h3>Three mostly used models</h3>
+              <h3>Three Approaches</h3>
             </header>
             <section>Gaussian bayes</section>
             <section>Multinomial bayes</section>
