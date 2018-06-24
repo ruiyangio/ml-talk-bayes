@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Reveal from 'reveal.js';
 import MathJax from 'react-mathjax2';
+import C3Chart from 'react-c3js';
+import 'c3/c3.css';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { monokaiSublime } from 'react-syntax-highlighter/styles/hljs';
 import '../node_modules/reveal.js/css/reveal.css';
 import '../node_modules/reveal.js/css/theme/black.css';
 import './App.css';
@@ -18,6 +22,13 @@ const jointProb3 = ' = P(f_1|C_k)*P(f_2|C_k)*...*P(f_n|C_k)*P(C_k)';
 const jointProb4 = '= P(C_k)prod_(i=0)^N P(f_i|C_k)';
 const classifier =
   'hat y = argmax P(C_k)prod_(i=0)^N P(f_i|C_k), k in {1, ..., K}';
+
+const data = {
+  columns: [
+    ['data1', 30, 200, 100, 400, 150, 250],
+    ['data2', 50, 20, 10, 40, 15, 25]
+  ]
+};
 
 class App extends Component {
   componentDidMount() {
@@ -106,7 +117,7 @@ class App extends Component {
               </div>
             </section>
             <section>
-              <div class="fragment" data-fragment-index="1">
+              <div className="fragment" data-fragment-index="1">
                 <div>Joint Probability</div>
                 <MathJax.Context input="ascii">
                   <div>
@@ -115,7 +126,7 @@ class App extends Component {
                 </MathJax.Context>
               </div>
               <br />
-              <div class="fragment" data-fragment-index="2">
+              <div className="fragment" data-fragment-index="2">
                 <div>Probability chain rule</div>
                 <MathJax.Context input="ascii">
                   <div>
@@ -124,7 +135,7 @@ class App extends Component {
                 </MathJax.Context>
               </div>
               <br />
-              <div class="fragment" data-fragment-index="3">
+              <div className="fragment" data-fragment-index="3">
                 <div>Conditional independence assumption</div>
                 <MathJax.Context input="ascii">
                   <div>
@@ -133,7 +144,7 @@ class App extends Component {
                 </MathJax.Context>
               </div>
               <br />
-              <div class="fragment" data-fragment-index="4">
+              <div className="fragment" data-fragment-index="4">
                 <MathJax.Context input="ascii">
                   <div>
                     <MathJax.Node>{jointProb4}</MathJax.Node>
@@ -158,7 +169,13 @@ class App extends Component {
             <header>
               <h3>Three Approaches</h3>
             </header>
-            <section>Gaussian bayes</section>
+            <section>
+              <h4>Gaussian bayes</h4>
+              <C3Chart data={data} />
+              <SyntaxHighlighter language="python" style={monokaiSublime}>
+                def f(): c = a + b
+              </SyntaxHighlighter>
+            </section>
             <section>Multinomial bayes</section>
             <section>Binomial bayes</section>
           </section>
