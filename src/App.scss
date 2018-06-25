@@ -2,4 +2,20 @@
   &.reveal {
     position: absolute;
   }
+
+  .demo-chart {
+    background: white;
+
+    .c3-tooltip {
+      color: black;
+    }
+  }
+
+  .demo-description {
+    margin-left: 20px;
+  }
+
+  .demo-table {
+    font-size: 30px;
+  }
 }
