@@ -513,7 +513,9 @@ class App extends Component {
           </section>
           <section>
             <header>
-              <h3>Results</h3>
+              <h3>Results and Validation</h3>
+            </header>
+            <section>
               <div className="demo-chart">
                 <C3Chart
                   title={accuracyChart.title}
@@ -559,7 +561,42 @@ class App extends Component {
                   </tbody>
                 </table>
               </div>
-            </header>
+            </section>
+            <section>
+              <div>
+                <div>Confusion matrix for MNB-Trigram with Negation</div>
+                <table className="demo-table">
+                  <tbody>
+                    <tr>
+                      <th />
+                      <th>Negative</th>
+                      <th>Positive</th>
+                      <th>Total</th>
+                    </tr>
+                    <tr>
+                      <td>Negative</td>
+                      <td>41614</td>
+                      <td>8886</td>
+                      <td>50500</td>
+                    </tr>
+                    <tr>
+                      <td>Positive</td>
+                      <td>10982</td>
+                      <td>39518</td>
+                      <td>50500</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br />
+              <div>
+                <div>Some evaluation methods</div>
+                <ul>
+                  <li>K-Fold Cross validation</li>
+                  <li>A/B testing</li>
+                </ul>
+              </div>
+            </section>
           </section>
           <section
             data-background-iframe="http://elincia.westus2.cloudapp.azure.com/ml/graphql"
