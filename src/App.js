@@ -435,47 +435,77 @@ class App extends Component {
               </SyntaxHighlighter>
             </section>
             <section>
-              <header>Sklearn implementation</header>
+              <h4>Implementation with Sklearn</h4>
               <SyntaxHighlighter
                 language="python"
                 style={monokaiSublime}
                 wrapLines={true}
               >
                 {`
-                  x = [
-                      [1,2,3,4],
-                      [5,6,7,8],
-                      [2,3,4,4]
-                  ]
-                  y = [1,0,1]
-                  y = binary_transform(y)
-                  # [[0. 1.]
-                  #  [1. 0.]
-                  #  [0. 1.]]
-                  feature_count = [
-                      [0, 0, 0, 0],
-                      [0, 0, 0, 0]
-                  ]
-                  class_count = [0, 0]
-                  feature_count += y.T * x
-                  #  [[5. 6. 7. 8.]
-                  #  [3. 5. 7. 8.]]
-                  class_count += y.sum(axis=0) # sum along column
-                  # [1. 2.]
-                  smoothed_feature_count = feature_count + 1
-                  smoothed_class_count = smoothed_feature_count.sum(axis=1) # sum along row
-                  # [[6. 7. 8. 9.]
-                  #  [4. 6. 8. 9.]]
-                  # [30. 27.]
-                  feature_log_prob_ = log(smoothed_feature_count)-log(smoothed_class_count)
-                  # [[-1.60943791 -1.45528723 -1.32175584 -1.2039728 ]
-                  #  [-1.9095425  -1.5040774  -1.21639532 -1.09861229]]
-                  class_log_prior = log(class_count)-log(class_count.sum())
-                  # [-1.09861229 -0.40546511]
-                  new_case = [2,3,4,5]
-                  log_prob = new_case * feature_log_prob_.T + class_log_prior
-                  # [-19.99023719 -19.09542505]
-                  `}
+                # convert array of tokens to tfidf feature
+                tfidf_transformer = TfidfTransformer()
+                vectorizer = CountVectorizer(min_df=2, tokenizer=tokenizer)
+                train_counts = vectorizer.fit_transform(train_content)
+                train_tfidf = tfidf_transformer.fit_transform(train_counts)
+                # Fit the MNB model
+                clf = MultinomialNB().fit(train_tfidf, target)
+                # Persist vectorizer and model
+                joblib.dump(vectorizer, VECTOR_FILE)
+                joblib.dump(tfidf_transformer, IFIDF_FILE)
+                joblib.dump(clf, MODEL_FILE)
+                # Predict
+                countVector = vectorizer.transform([text])
+                tf_idf = tfidf_transformer.transform(countVector)
+                proba = clf.predict_proba(tf_idf)
+                `}
+              </SyntaxHighlighter>
+              <div>
+                <a href="https://github.com/ruiyangio/text-analytics">
+                  Code on Github
+                </a>
+              </div>
+            </section>
+            <section>
+              <SyntaxHighlighter
+                language="python"
+                style={monokaiSublime}
+                wrapLines={true}
+              >
+                {`
+                    x = [
+                        [1,2,3,4],
+                        [5,6,7,8],
+                        [2,3,4,4]
+                    ]
+                    y = [1,0,1]
+                    y = binary_transform(y)
+                    # [[0. 1.]
+                    #  [1. 0.]
+                    #  [0. 1.]]
+                    feature_count = [
+                        [0, 0, 0, 0],
+                        [0, 0, 0, 0]
+                    ]
+                    class_count = [0, 0]
+                    feature_count += y.T * x
+                    #  [[5. 6. 7. 8.]
+                    #  [3. 5. 7. 8.]]
+                    class_count += y.sum(axis=0) # sum along column
+                    # [1. 2.]
+                    smoothed_feature_count = feature_count + 1
+                    smoothed_class_count = smoothed_feature_count.sum(axis=1) # sum along row
+                    # [[6. 7. 8. 9.]
+                    #  [4. 6. 8. 9.]]
+                    # [30. 27.]
+                    feature_log_prob_ = log(smoothed_feature_count)-log(smoothed_class_count)
+                    # [[-1.60943791 -1.45528723 -1.32175584 -1.2039728 ]
+                    #  [-1.9095425  -1.5040774  -1.21639532 -1.09861229]]
+                    class_log_prior = log(class_count)-log(class_count.sum())
+                    # [-1.09861229 -0.40546511]
+                    new_case = [2,3,4,5]
+                    log_prob = new_case * feature_log_prob_.T + class_log_prior
+                    # [-19.99023719 -19.09542505]
+                    `}
               </SyntaxHighlighter>
             </section>
           </section>
