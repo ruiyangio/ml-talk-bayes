@@ -562,7 +562,7 @@ class App extends Component {
             </header>
           </section>
           <section
-            data-background-iframe="http://elincia.westus2.cloudapp.azure.com/graphql"
+            data-background-iframe="http://elincia.westus2.cloudapp.azure.com/ml/graphql"
             data-background-interactive
           />
         </div>
