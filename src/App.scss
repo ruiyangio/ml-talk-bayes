@@ -1,6 +1,18 @@
 .demo {
   &.reveal {
     position: absolute;
+
+    img {
+      max-width: 70%;
+      max-height: 400px;
+      margin: 0;
+    }
+
+    @media screen and (max-width: 1300px) {
+      section {
+        font-size: 2vw;
+      }
+    }
   }
 
   .demo-chart {
@@ -16,6 +28,6 @@
   }
 
   .demo-table {
-    font-size: 30px;
+    font-size: 2vw;
   }
 }

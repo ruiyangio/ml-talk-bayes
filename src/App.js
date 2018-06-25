@@ -9,6 +9,7 @@ import '../node_modules/reveal.js/css/reveal.css';
 import '../node_modules/reveal.js/css/theme/black.css';
 import './App.css';
 import baiduSearchImage from './baidu_search.png';
+import mr from './mr.png';
 
 const bayesTherom = 'P(A|B) = (P(B|A) * P(A))/(P(B))';
 const featureVector = 'F = (f_1, f_2, ..., f_n)';
@@ -362,7 +363,8 @@ class App extends Component {
               </div>
             </section>
             <section>
-              <h4>MapReduce implementation</h4>
+              <img src={mr} alt="MR Arch" />
+              <div>MapReduce Implementation</div>
             </section>
             <section>
               <h4>ngram language model</h4>
